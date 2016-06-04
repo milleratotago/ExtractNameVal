@@ -27,7 +27,7 @@ function [TorF, ArgList, PosOfArg] = ExtractName(xName,ArgList,CaseSensitive)
 %
 %   end % myfunction
 
-[xName, NSynonyms] = EnsureCellAndCount(xName);
+[xName, NSynonyms] = EnsureCell(xName);
 
 NamePos = [];
 for iPos=1:NSynonyms

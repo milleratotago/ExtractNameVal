@@ -44,7 +44,7 @@ function [x, ArgList, PosOfArg] = ExtractNameVal(xName,xDefaultVal,ArgList,CaseS
 
 x = xDefaultVal;
 
-[xName, NSynonyms] = EnsureCellAndCount(xName);
+[xName, NSynonyms] = EnsureCell(xName);
 
 NamePos = [];
 for iPos=1:NSynonyms
