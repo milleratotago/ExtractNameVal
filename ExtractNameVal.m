@@ -61,21 +61,22 @@ NamePos = sort(NamePos);
 NFound = numel(NamePos);
 
 if NFound > 0
-    x = ArgList{NamePos(NFound)+1};  % Use the last value if the option was specified more than once.
+    UsePos = 1;  % Just use the first instance if the option is specified more than once.
+    x = ArgList{NamePos(UsePos)+1};  % Use the last value if the option was specified more than once.
     % Remove the option's name and values from the argument list.
-    for iFnd = NFound:-1:1
+    for iFnd = UsePos:-1:1
         jPos = NamePos(iFnd);
         ArgList(jPos+1) = [];
         ArgList(jPos) = [];
     end
-    PosOfArg = NamePos(end);
+    PosOfArg = NamePos(1);
 else
     PosOfArg = NaN;
 end
 
-if NFound > 1
-    warning(['Parameter ' xName{1} ' specified more than once; using the last value.']);
-end
+%if NFound > 1
+%    warning(['Parameter ' xName{1} ' specified more than once; only using the first value.']);
+%end
 
 % Check the assertions indicated by the varargin arguments, if any:
 
