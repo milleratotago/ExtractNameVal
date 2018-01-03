@@ -10,6 +10,8 @@ function [x, ArgList, PosOfArg] = ExtractNameVal(xName,xDefaultVal,ArgList,CaseS
 %  if they were present.
 %
 % The optional varargin is a string or cell array of strings used in assertions to check x.
+%   For example, 'x>0' would check that x was a positive number.
+%   For example, 'isa(x,''function_handle'')'  would check that x was a function (note double quotes because isa requires a string descriptor).
 %
 % PosOfArg is the position in the output ArgList of the next argument following the (last) named argument pair.
 
@@ -41,6 +43,12 @@ function [x, ArgList, PosOfArg] = ExtractNameVal(xName,xDefaultVal,ArgList,CaseS
 %   [Option2, varargin] = ExtractNameVal('Option2',-10,ArgList,false,'x>0');
 %   This is useful when a second "required" parameter must be specified
 %     whenever a certain first "optional" parameter is specified.
+%
+% MODIFICATION NEEDED: It was a bad idea for ExtractNameVal to check for a
+%  required parameter by testing an assertion.  In some use cases, I only
+%  want to check the assertion if the parameter is actually specified.
+%  It would be better to have a separate ExtractNameVal parameter to indicate
+%  whether the named input parameter is required.
 
 x = xDefaultVal;
 
